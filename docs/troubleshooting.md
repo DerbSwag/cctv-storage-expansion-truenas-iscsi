@@ -21,7 +21,7 @@ NVR requested NFSv3 over UDP
 TrueNAS exposed NFS on TCP 2049
 ```
 
-The production design moved to iSCSI/IP SAN.
+The implementation moved to iSCSI/IP SAN.
 
 ## iSCSI Checks
 
@@ -82,4 +82,3 @@ Expected TCP handshake:
 7. If needed, use Network HDD Search again.
 
 Do not format a disk simply because it is temporarily offline.
-

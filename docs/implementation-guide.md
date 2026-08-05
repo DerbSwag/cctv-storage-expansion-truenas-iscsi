@@ -45,7 +45,7 @@ NVR requested NFS program 100003 version 3 over UDP
 TrueNAS exposed NFSv3 on TCP 2049
 ```
 
-Because the protocol behavior did not match, NFS was not selected as the production storage protocol.
+Because the protocol behavior did not match, NFS was not selected for this lab implementation.
 
 ## Phase 3: iSCSI Implementation
 
@@ -96,4 +96,3 @@ Disk 17: 680 GB, IP SAN, Normal, R/W
 Disk 18: 600 GB, IP SAN, Normal, R/W
 Disk 19: 340 GB, IP SAN, Normal, R/W
 ```
-

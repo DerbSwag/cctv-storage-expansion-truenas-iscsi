@@ -10,7 +10,7 @@
 | Block storage protocol | iSCSI |
 | Hikvision storage type | IP SAN |
 | Firewall and router | FortiGate |
-| NVR | Hikvision Hikvision NVR |
+| NVR | Hikvision NVR |
 | NVR firmware | production firmware release |
 | Server network | 10.10.10.0/24 |
 | CCTV network | 10.20.30.0/24 |
@@ -24,25 +24,24 @@
 ## Logical Flow
 
 ```text
-Hikvision NVR
-  IP: 10.20.30.40
+Hikvision NVR (10.20.30.40)
   Storage Type: IP SAN
-      â”‚
-      â”‚ TCP 3260
-      â–¼
+      |
+      | TCP 3260
+      v
 FortiGate
   CCTV_VLAN: CCTV network
   SERVER_VLAN: server network
   NAT: disabled for local traffic
-      â”‚
-      â–¼
+      |
+      v
 TrueNAS VM
   IP: 10.10.10.20
   iSCSI Portal: 0.0.0.0:3260
-      â”‚
-      â”œâ”€â”€ target-800 -> CCTV/NVR_IPSAN_800 -> 600 GiB
-      â”œâ”€â”€ target-460 -> NVR_CCTV/NVR_IPSAN_460 -> 340 GiB
-      â””â”€â”€ target-900 -> NVR_CCTV_3/NVR_IPSAN_900 -> 680 GiB
+      |
+      +- target-800 -> CCTV/NVR_IPSAN_800 -> 600 GiB
+      +- target-460 -> NVR_CCTV/NVR_IPSAN_460 -> 340 GiB
+      `- target-900 -> NVR_CCTV_3/NVR_IPSAN_900 -> 680 GiB
 ```
 
 ## FortiGate Routing
@@ -66,7 +65,7 @@ Service: ALL
 NAT: Disabled
 ```
 
-For production hardening, replace `ALL` with a dedicated policy that allows only:
+For a more restricted deployment, replace `ALL` with a dedicated policy that allows only:
 
 ```text
 Source:      10.20.30.40
@@ -74,4 +73,3 @@ Destination: 10.10.10.20
 Service:     TCP 3260
 NAT:         Disabled
 ```
-

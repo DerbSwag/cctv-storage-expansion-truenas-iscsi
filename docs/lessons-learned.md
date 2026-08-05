@@ -2,7 +2,7 @@
 
 ## NFS Was Not the Best Protocol for This NVR and TrueNAS Version
 
-The NVR successfully reached RPCBind and mountd, but the packet captures showed it requesting NFSv3 over UDP. The deployed TrueNAS system exposed NFS on TCP 2049. This mismatch made NFS unsuitable for the production design.
+The NVR successfully reached RPCBind and mountd, but packet captures showed it requesting NFSv3 over UDP. The evaluated TrueNAS configuration exposed NFS on TCP 2049. This mismatch made NFS unsuitable for this implementation.
 
 ## iSCSI Was the Correct Hikvision Integration Path
 
@@ -29,4 +29,3 @@ TrueNAS reserves thick zvol capacity immediately. Hikvision free space and TrueN
 ## Do Not Trust VM Storage as Backup
 
 The design expands recording capacity. It does not provide redundancy, offsite backup, or retention protection.
-

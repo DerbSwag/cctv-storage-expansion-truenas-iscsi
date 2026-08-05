@@ -10,7 +10,7 @@
         <mxCell id="fw" value="FortiGate&#xa;Inter-VLAN Routing&#xa;NAT Disabled" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff4e5;strokeColor=#f29900;" vertex="1" parent="1">
           <mxGeometry x="470" y="135" width="230" height="120" as="geometry"/>
         </mxCell>
-        <mxCell id="nvr" value="Hikvision Hikvision NVR&#xa;10.20.30.40&#xa;Storage Type: IP SAN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#188038;" vertex="1" parent="1">
+        <mxCell id="nvr" value="Hikvision NVR&#xa;10.20.30.40&#xa;Storage Type: IP SAN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#188038;" vertex="1" parent="1">
           <mxGeometry x="770" y="120" width="280" height="150" as="geometry"/>
         </mxCell>
         <mxCell id="edge1" value="TCP 3260" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="host" target="fw">
@@ -23,4 +23,3 @@
     </mxGraphModel>
   </diagram>
 </mxfile>
-
