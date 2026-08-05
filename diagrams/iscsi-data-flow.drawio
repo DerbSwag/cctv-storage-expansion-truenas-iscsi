@@ -1,0 +1,26 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="iSCSI Data Flow">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="nvr" value="Hikvision NVR&#xa;Disk 17 / 18 / 19" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#188038;" vertex="1" parent="1">
+          <mxGeometry x="60" y="120" width="220" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="portal" value="TrueNAS iSCSI Portal&#xa;0.0.0.0:3260" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#1a73e8;" vertex="1" parent="1">
+          <mxGeometry x="360" y="120" width="220" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="targets" value="Targets&#xa;hikvision-900: 680 GB&#xa;hikvision-800: 600 GB&#xa;hikvision-460: 340 GB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f3f4;strokeColor=#5f6368;" vertex="1" parent="1">
+          <mxGeometry x="660" y="90" width="280" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge1" value="IP SAN / iSCSI" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="nvr" target="portal">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge2" value="LUN mapping" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="portal" target="targets">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+
