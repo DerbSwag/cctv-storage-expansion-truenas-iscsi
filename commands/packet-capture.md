@@ -1,33 +1,33 @@
-# Packet Capture
+﻿# Packet Capture
 
 ## TrueNAS iSCSI Capture
 
 ```bash
-sudo tcpdump -ni eth0 'host 192.168.101.139 and port 3260'
+sudo tcpdump -ni eth0 'host 10.20.30.40 and port 3260'
 ```
 
 ## TrueNAS Full NVR Capture
 
 ```bash
-sudo tcpdump -ni eth0 host 192.168.101.139
+sudo tcpdump -ni eth0 host 10.20.30.40
 ```
 
 ## FortiGate iSCSI Sniffer
 
 ```text
-diagnose sniffer packet any 'host 192.168.101.139 and host 192.168.1.24 and port 3260' 4 0 l
+diagnose sniffer packet any 'host 10.20.30.40 and host 10.10.10.20 and port 3260' 4 0 l
 ```
 
 ## FortiGate Full NVR-to-TrueNAS Sniffer
 
 ```text
-diagnose sniffer packet any 'host 192.168.101.139 and host 192.168.1.24' 4 0 l
+diagnose sniffer packet any 'host 10.20.30.40 and host 10.10.10.20' 4 0 l
 ```
 
 Expected iSCSI handshake:
 
 ```text
-192.168.101.139.xxxxx -> 192.168.1.24.3260 SYN
-192.168.1.24.3260 -> 192.168.101.139.xxxxx SYN,ACK
+10.20.30.40.xxxxx -> 10.10.10.20.3260 SYN
+10.10.10.20.3260 -> 10.20.30.40.xxxxx SYN,ACK
 ```
 

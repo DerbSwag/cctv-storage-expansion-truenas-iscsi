@@ -1,4 +1,4 @@
-# Runbook: TrueNAS VM Recovery
+﻿# Runbook: TrueNAS VM Recovery
 
 Use this when the TrueNAS VM is powered off, rebooted, or unreachable.
 
@@ -8,7 +8,7 @@ Use this when the TrueNAS VM is powered off, rebooted, or unreachable.
 2. Check that the host is not sleeping or hibernating.
 3. Check free space on the physical drives storing VHDX files.
 4. Start the TrueNAS VM in Hyper-V.
-5. Wait until the Web UI is available at `https://192.168.1.24`.
+5. Wait until the Web UI is available at `https://10.10.10.20`.
 6. Confirm all pools are online:
 
 ```bash

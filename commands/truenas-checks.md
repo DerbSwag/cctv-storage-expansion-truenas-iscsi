@@ -1,4 +1,4 @@
-# TrueNAS Checks
+﻿# TrueNAS Checks
 
 ## Pool Health
 
@@ -47,6 +47,6 @@ These were used during the proof of concept:
 ```bash
 showmount -e localhost
 rpcinfo -p localhost
-sudo tcpdump -ni eth0 host 192.168.101.139
+sudo tcpdump -ni eth0 host 10.20.30.40
 ```
 

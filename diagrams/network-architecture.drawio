@@ -1,16 +1,16 @@
-<mxfile host="app.diagrams.net">
+﻿<mxfile host="app.diagrams.net">
   <diagram name="Network Architecture">
     <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0"/>
         <mxCell id="1" parent="0"/>
-        <mxCell id="host" value="Windows Hyper-V Host&#xa;TrueNAS VM 192.168.1.24&#xa;Pools: CCTV, NVR_CCTV, NVR_CCTV_3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#1a73e8;" vertex="1" parent="1">
+        <mxCell id="host" value="Windows Hyper-V Host&#xa;TrueNAS VM 10.10.10.20&#xa;Pools: CCTV, NVR_CCTV, NVR_CCTV_3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#1a73e8;" vertex="1" parent="1">
           <mxGeometry x="80" y="120" width="320" height="150" as="geometry"/>
         </mxCell>
         <mxCell id="fw" value="FortiGate&#xa;Inter-VLAN Routing&#xa;NAT Disabled" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff4e5;strokeColor=#f29900;" vertex="1" parent="1">
           <mxGeometry x="470" y="135" width="230" height="120" as="geometry"/>
         </mxCell>
-        <mxCell id="nvr" value="Hikvision DS-7732NI-I4(B)&#xa;192.168.101.139&#xa;Storage Type: IP SAN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#188038;" vertex="1" parent="1">
+        <mxCell id="nvr" value="Hikvision Hikvision NVR&#xa;10.20.30.40&#xa;Storage Type: IP SAN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#188038;" vertex="1" parent="1">
           <mxGeometry x="770" y="120" width="280" height="150" as="geometry"/>
         </mxCell>
         <mxCell id="edge1" value="TCP 3260" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="host" target="fw">

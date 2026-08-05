@@ -1,19 +1,19 @@
-# Storage Design
+﻿# Storage Design
 
 ## Final Storage Layout
 
 | Pool | Virtual Disk | Usable Pool | Zvol | Zvol Size | iSCSI Target | Hikvision Disk |
 |---|---:|---:|---|---:|---|---|
-| `CCTV` | 800 GiB | 771.25 GiB | `NVR_IPSAN_800` | 600 GiB | `hikvision-800` | Disk 18 |
-| `NVR_CCTV` | 460 GiB | 441.88 GiB | `NVR_IPSAN_460` | 340 GiB | `hikvision-460` | Disk 19 |
-| `NVR_CCTV_3` | 900 GiB | 868.25 GiB | `NVR_IPSAN_900` | 680 GiB | `hikvision-900` | Disk 17 |
+| `CCTV` | 800 GiB | 771.25 GiB | `NVR_IPSAN_800` | 600 GiB | `target-800` | Disk 18 |
+| `NVR_CCTV` | 460 GiB | 441.88 GiB | `NVR_IPSAN_460` | 340 GiB | `target-460` | Disk 19 |
+| `NVR_CCTV_3` | 900 GiB | 868.25 GiB | `NVR_IPSAN_900` | 680 GiB | `target-900` | Disk 17 |
 
 Target IQNs:
 
 ```text
-iqn.2005-10.org.freenas.ctl:hikvision-800
-iqn.2005-10.org.freenas.ctl:hikvision-460
-iqn.2005-10.org.freenas.ctl:hikvision-900
+iqn.2005-10.example.storage:target-800
+iqn.2005-10.example.storage:target-460
+iqn.2005-10.example.storage:target-900
 ```
 
 Total external storage added to the NVR:
@@ -55,7 +55,7 @@ The targets use these settings:
 | Compression | LZ4 |
 | Deduplication | Off |
 | Authentication | None |
-| Authorized network | 192.168.101.139/32 |
+| Authorized network | 10.20.30.40/32 |
 | Portal | Shared portal on TCP 3260 |
 
 ## Risk Note

@@ -1,10 +1,10 @@
-# TrueNAS IP SAN Integration for Hikvision NVR
+﻿# TrueNAS IP SAN Integration for Hikvision NVR
 
 Private infrastructure documentation for expanding a Hikvision NVR with external storage using TrueNAS Community Edition, Microsoft Hyper-V, ZFS, iSCSI/IP SAN, and FortiGate inter-VLAN routing.
 
 ## Project Overview
 
-This project designs and implements additional recording storage for a Hikvision DS-7732NI-I4(B) NVR. TrueNAS runs as a virtual machine on Microsoft Hyper-V and presents three ZFS-backed iSCSI targets to the NVR. The NVR connects to these targets using Hikvision's `IP SAN` storage type across routed VLANs through a FortiGate firewall.
+This project designs and implements additional recording storage for a Hikvision Hikvision NVR NVR. TrueNAS runs as a virtual machine on Microsoft Hyper-V and presents three ZFS-backed iSCSI targets to the NVR. The NVR connects to these targets using Hikvision's `IP SAN` storage type across routed VLANs through a FortiGate firewall.
 
 The first proof of concept used NFS. Packet captures showed that the NVR requested NFSv3 over UDP, while the deployed TrueNAS system exposed NFS on TCP 2049. The production design therefore moved to iSCSI, which the NVR supports as `IP SAN`.
 
@@ -14,9 +14,9 @@ Final result: 3 iSCSI targets attached to the NVR, adding 1,620 GB of external r
 
 | NVR Disk | TrueNAS Pool | Zvol | iSCSI Target | Capacity | Status |
 |---|---|---|---|---:|---|
-| Disk 17 | `NVR_CCTV_3` | `NVR_IPSAN_900` | `hikvision-900` | 680 GB | Normal / R/W |
-| Disk 18 | `CCTV` | `NVR_IPSAN_800` | `hikvision-800` | 600 GB | Normal / R/W |
-| Disk 19 | `NVR_CCTV` | `NVR_IPSAN_460` | `hikvision-460` | 340 GB | Normal / R/W |
+| Disk 17 | `NVR_CCTV_3` | `NVR_IPSAN_900` | `target-900` | 680 GB | Normal / R/W |
+| Disk 18 | `CCTV` | `NVR_IPSAN_800` | `target-800` | 600 GB | Normal / R/W |
+| Disk 19 | `NVR_CCTV` | `NVR_IPSAN_460` | `target-460` | 340 GB | Normal / R/W |
 
 Total external storage added:
 
@@ -28,49 +28,49 @@ Total external storage added:
 
 ```text
                      LAN / Server Network
-                        192.168.1.0/24
-┌────────────────────────────────────────────────────────────┐
-│ Windows Hyper-V Host                                       │
-│                                                            │
-│ TrueNAS VM                                                 │
-│ IP: 192.168.1.24                                           │
-│ CPU: 2 vCPU                                                │
-│ RAM: 8 GB                                                  │
-│                                                            │
-│ ├── Pool: CCTV                                             │
-│ │   ├── Virtual Disk: 800 GiB                              │
-│ │   ├── Usable Pool: 771.25 GiB                            │
-│ │   ├── Zvol: NVR_IPSAN_800                                │
-│ │   ├── Zvol Size: 600 GiB                                 │
-│ │   └── iSCSI Target: hikvision-800                        │
-│ │                                                          │
-│ ├── Pool: NVR_CCTV                                         │
-│ │   ├── Virtual Disk: 460 GiB                              │
-│ │   ├── Usable Pool: 441.88 GiB                            │
-│ │   ├── Zvol: NVR_IPSAN_460                                │
-│ │   ├── Zvol Size: 340 GiB                                 │
-│ │   └── iSCSI Target: hikvision-460                        │
-│ │                                                          │
-│ └── Pool: NVR_CCTV_3                                       │
-│     ├── Virtual Disk: 900 GiB                              │
-│     ├── Usable Pool: 868.25 GiB                            │
-│     ├── Zvol: NVR_IPSAN_900                                │
-│     ├── Zvol Size: 680 GiB                                 │
-│     └── iSCSI Target: hikvision-900                        │
-└─────────────────────────────┬──────────────────────────────┘
-                              │
-                              │ iSCSI TCP 3260
-                              │
+                        10.10.10.0/24
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚ Windows Hyper-V Host                                       â”‚
+â”‚                                                            â”‚
+â”‚ TrueNAS VM                                                 â”‚
+â”‚ IP: 10.10.10.20                                           â”‚
+â”‚ CPU: 2 vCPU                                                â”‚
+â”‚ RAM: 8 GB                                                  â”‚
+â”‚                                                            â”‚
+â”‚ â”œâ”€â”€ Pool: CCTV                                             â”‚
+â”‚ â”‚   â”œâ”€â”€ Virtual Disk: 800 GiB                              â”‚
+â”‚ â”‚   â”œâ”€â”€ Usable Pool: 771.25 GiB                            â”‚
+â”‚ â”‚   â”œâ”€â”€ Zvol: NVR_IPSAN_800                                â”‚
+â”‚ â”‚   â”œâ”€â”€ Zvol Size: 600 GiB                                 â”‚
+â”‚ â”‚   â””â”€â”€ iSCSI Target: target-800                        â”‚
+â”‚ â”‚                                                          â”‚
+â”‚ â”œâ”€â”€ Pool: NVR_CCTV                                         â”‚
+â”‚ â”‚   â”œâ”€â”€ Virtual Disk: 460 GiB                              â”‚
+â”‚ â”‚   â”œâ”€â”€ Usable Pool: 441.88 GiB                            â”‚
+â”‚ â”‚   â”œâ”€â”€ Zvol: NVR_IPSAN_460                                â”‚
+â”‚ â”‚   â”œâ”€â”€ Zvol Size: 340 GiB                                 â”‚
+â”‚ â”‚   â””â”€â”€ iSCSI Target: target-460                        â”‚
+â”‚ â”‚                                                          â”‚
+â”‚ â””â”€â”€ Pool: NVR_CCTV_3                                       â”‚
+â”‚     â”œâ”€â”€ Virtual Disk: 900 GiB                              â”‚
+â”‚     â”œâ”€â”€ Usable Pool: 868.25 GiB                            â”‚
+â”‚     â”œâ”€â”€ Zvol: NVR_IPSAN_900                                â”‚
+â”‚     â”œâ”€â”€ Zvol Size: 680 GiB                                 â”‚
+â”‚     â””â”€â”€ iSCSI Target: target-900                        â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                              â”‚
+                              â”‚ iSCSI TCP 3260
+                              â”‚
                      FortiGate Firewall
                      Inter-VLAN Routing
-                              │
-                              ▼
+                              â”‚
+                              â–¼
                     CCTV Network
-                    192.168.101.0/24
+                    10.20.30.0/24
 
-                    Hikvision DS-7732NI-I4(B)
-                    IP: 192.168.101.139
-                    Gateway: 192.168.101.1
+                    Hikvision Hikvision NVR
+                    IP: 10.20.30.40
+                    Gateway: 10.20.30.1
 ```
 
 ## Repository Map
@@ -89,9 +89,9 @@ Total external storage added:
 
 ## Resume Summary
 
-ภาษาไทย:
+à¸ à¸²à¸©à¸²à¹„à¸—à¸¢:
 
-ออกแบบและติดตั้งระบบ External Storage สำหรับ Hikvision NVR โดยใช้ TrueNAS Community Edition บน Microsoft Hyper-V เชื่อมต่อผ่าน iSCSI/IP SAN ข้าม VLAN ด้วย FortiGate Firewall สร้าง ZFS Pool และ iSCSI Target จำนวน 3 ชุด เพิ่มพื้นที่บันทึกรวม 1.62 TB พร้อมวิเคราะห์ NFS compatibility, RPC traffic, routing, firewall policy และ iSCSI session ด้วย tcpdump, rpcinfo และ FortiGate Debug Flow
+à¸­à¸­à¸à¹à¸šà¸šà¹à¸¥à¸°à¸•à¸´à¸”à¸•à¸±à¹‰à¸‡à¸£à¸°à¸šà¸š External Storage à¸ªà¸³à¸«à¸£à¸±à¸š Hikvision NVR à¹‚à¸”à¸¢à¹ƒà¸Šà¹‰ TrueNAS Community Edition à¸šà¸™ Microsoft Hyper-V à¹€à¸Šà¸·à¹ˆà¸­à¸¡à¸•à¹ˆà¸­à¸œà¹ˆà¸²à¸™ iSCSI/IP SAN à¸‚à¹‰à¸²à¸¡ VLAN à¸”à¹‰à¸§à¸¢ FortiGate Firewall à¸ªà¸£à¹‰à¸²à¸‡ ZFS Pool à¹à¸¥à¸° iSCSI Target à¸ˆà¸³à¸™à¸§à¸™ 3 à¸Šà¸¸à¸” à¹€à¸žà¸´à¹ˆà¸¡à¸žà¸·à¹‰à¸™à¸—à¸µà¹ˆà¸šà¸±à¸™à¸—à¸¶à¸à¸£à¸§à¸¡ 1.62 TB à¸žà¸£à¹‰à¸­à¸¡à¸§à¸´à¹€à¸„à¸£à¸²à¸°à¸«à¹Œ NFS compatibility, RPC traffic, routing, firewall policy à¹à¸¥à¸° iSCSI session à¸”à¹‰à¸§à¸¢ tcpdump, rpcinfo à¹à¸¥à¸° FortiGate Debug Flow
 
 English:
 

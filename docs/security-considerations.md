@@ -1,8 +1,8 @@
-# Security Considerations
+﻿# Security Considerations
 
 ## Current Security Controls
 
-- iSCSI targets are restricted to `192.168.101.139/32`.
+- iSCSI targets are restricted to `10.20.30.40/32`.
 - Authentication is disabled for simplicity during the initial deployment.
 - FortiGate local policy has NAT disabled for NVR-to-TrueNAS traffic.
 - iSCSI targets are not exposed to the internet.
@@ -12,8 +12,8 @@
 Replace the broad local `ALL` service policy with a dedicated iSCSI policy:
 
 ```text
-Source:      192.168.101.139
-Destination: 192.168.1.24
+Source:      10.20.30.40
+Destination: 10.10.10.20
 Service:     TCP 3260
 NAT:         Disabled
 Log:         Enabled

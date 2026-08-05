@@ -1,4 +1,4 @@
-# Implementation Guide
+﻿# Implementation Guide
 
 ## Phase 1: Infrastructure Preparation
 
@@ -9,8 +9,8 @@
 5. Disable Dynamic Memory.
 6. Disable Hyper-V checkpoints.
 7. Attach the VM to an External Virtual Switch.
-8. Set the TrueNAS static IP to `192.168.1.24/24`.
-9. Set the default gateway to `192.168.1.1`.
+8. Set the TrueNAS static IP to `10.10.10.20/24`.
+9. Set the default gateway to `10.10.10.1`.
 10. Attach Dynamic VHDX data disks for the storage pools.
 
 ## Phase 2: NFS Proof of Concept
@@ -25,13 +25,13 @@ NFS was tested first with these exports:
 The NVR was authorized as:
 
 ```text
-192.168.101.139
+10.20.30.40
 ```
 
 Verification commands:
 
 ```bash
-ping -c 4 192.168.101.139
+ping -c 4 10.20.30.40
 showmount -e localhost
 rpcinfo -p localhost
 ```
@@ -60,7 +60,7 @@ For each pool:
 7. Select `Legacy OS` as the sharing platform.
 8. Create an iSCSI Target.
 9. Use the shared iSCSI portal on TCP 3260.
-10. Restrict Authorized Network to `192.168.101.139/32`.
+10. Restrict Authorized Network to `10.20.30.40/32`.
 11. Use Authentication Method `None`.
 12. Associate the Target with the Extent.
 13. Use LUN ID 0 per target.
@@ -71,7 +71,7 @@ On the Hikvision NVR:
 
 1. Open `Storage -> Storage Management -> Network HDD`.
 2. Select Type `IP SAN`.
-3. Set Server Address to `192.168.1.24`.
+3. Set Server Address to `10.10.10.20`.
 4. Use Search to discover the iSCSI targets.
 5. Select the IQN target.
 6. Save the Network HDD entry.

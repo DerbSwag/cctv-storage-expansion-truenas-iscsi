@@ -1,11 +1,11 @@
-# Disaster Recovery
+﻿# Disaster Recovery
 
 ## If the TrueNAS VM Is Down
 
 1. Check the Windows Hyper-V host.
 2. Check physical drive free space.
 3. Start the TrueNAS VM.
-4. Wait until the Web UI is available at `https://192.168.1.24`.
+4. Wait until the Web UI is available at `https://10.10.10.20`.
 5. Confirm all pools are online:
 
 ```bash

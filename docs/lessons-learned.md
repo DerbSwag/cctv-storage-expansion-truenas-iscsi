@@ -1,4 +1,4 @@
-# Lessons Learned
+﻿# Lessons Learned
 
 ## NFS Was Not the Best Protocol for This NVR and TrueNAS Version
 
@@ -13,9 +13,9 @@ Hikvision exposes iSCSI under the `IP SAN` storage type. Once the target was cre
 The NVR worked reliably after using the built-in Search function to discover full IQNs:
 
 ```text
-iqn.2005-10.org.freenas.ctl:hikvision-800
-iqn.2005-10.org.freenas.ctl:hikvision-460
-iqn.2005-10.org.freenas.ctl:hikvision-900
+iqn.2005-10.example.storage:target-800
+iqn.2005-10.example.storage:target-460
+iqn.2005-10.example.storage:target-900
 ```
 
 ## Keep ZFS Pool Usage Below About 80%
